@@ -1,0 +1,89 @@
+configure coding environment in windows:
+try best to use software that can cross windows and linux.
+
+1. install git for windows.  git bash provide similar linux command environment.
+
+2. install sublime as editor. It can use both in windows and linux.
+setting for sublime:
+run this in git bash:
+echo 'alias subl="C:/Program\ Files/Sublime\ Text\ 3/sublime_text.exe"' >> ~/.bashrc
+then, close git bash.
+then, open it again, can use 'subl' to launch sublime.
+also can check the file: source ~/.bashrc
+
+git log: see the history of commit.
+To stop viewing git log output, press q (which stands for quit).
+git diff: compare two commits.
+To get colored diff output, run git config --global color.ui auto
+git log --stat: can see how many files or places changed.
+git clone: clone the whole repository to current directory.
+git checkout: check out/restore a previous commit.
+git status: show the change since the last commit.
+
+setting workplace:
+Save this file in your home directory with the name git-completion.bash.
+Save this file in your home directory with the name git-prompt.sh.
+Download bash_profile_course from the Downloadables section.
+If you already have a file in your home directory named .bash_profile, copy the content from bash_profile_course and paste it at the bottom of .bash_profile. Otherwise, move bash_profile_course to your home directory and rename it to .bash_profile. (If you're curious to learn more about how bash prompts work, see this page.)
+Making Git configurations:
+git config --global core.editor "'C:/Program Files/Sublime Text 2/sublime_text.exe' -n -w"
+git config --global push.default upstream
+git config --global merge.conflictstyle diff3
+
+3. git init: initial repository
+   ls -a : see the hidden files
+   git add: add file to staging area
+   git reset: remove file from staging area
+   logical change, logical seperate.
+   git checkout master
+   git diff: show difference of working directory and staging are
+   git diff --staged: show difference of staging area and repository.
+
+make branch:
+git branch: show the branches including master.
+git branch easy-mode: create a branch called easy-mode.
+git checkout easy-mode
+git log --graph --oneline master coins: compare master and branch coins.
+
+merge branches:
+git merge master coins: merge coins into master, note that master should be the current branch.
+git merge will also include the currently checked-out branch in the merged version. So if you have branch1 checked out, and you run git merge branch2 branch3, the merged version will combine branch1 as well as branch2 and branch3. That’s because the branch1 label will update after you make the merge commit, so it’s unlikely that you didn’t want the changes from branch1 included in the merge. For this reason, you should always checkout one of the two branches you’re planning on merging before doing the merge. Which one you should check out depends on which branch label you want to point to the new commit.
+
+Since the checked-out branch is always included in the merge, you may have guessed that when you are merging two branches, you don't need to specify both of them as arguments to git merge on the command line. If you want to merge branch2 into branch1, you can simply git checkout branch1 and then type git merge branch2. The only reason to type git merge branch1 branch2 is if it helps you keep better mental track of which branches you are merging.
+
+Also, since the two branches are merged, the order in which they are typed into the command line does not matter. The key is to remember that git merge always merges all the specified branches into the currently checked out branch, creating a new commit for that branch.
+
+Merge conflict (Newline characters between Windows and Unix systems):
+Context: Whenever we hit the "Enter" key on the keyboard, we are actually telling the computer to insert an invisible character into our text file to indicate to the computer that there should be a new line. Unix systems adds one character called the "line feed" character or LF or \n while Windows systems adds two characters, "carriage return" and "line feed" or CRLF or \r\n.
+
+Caroline's files have LF because her files were edited on Mac OSX, which uses LF. If a Windows user were to edit Caroline's files, the Windows text editor might convert all LF to CRLF to make editing files possible. When the Windows user merges her file with Caroline's files, a merge conflict will result due to the different LF and CRLF characters.
+
+To fix this, Windows users should set the global autocrlf attribute to true: git config --global core.autocrlf true. 
+
+
+git show commit_id: Comparing a commit to its parent
+git branch -d coins: delete the branch name after merge
+
+resolve merge conflicts
+
+use github to collaborate:
+
+Set up Password Caching
+Every time you send changes to GitHub via the command line, you'll need to type your password to prove that you have permission to modify the repository. This can get annoying quickly, so many people like to set up password caching, which will let you type your password once and have it auto-filled on that computer in the future.
+https://help.github.com/articles/caching-your-github-password-in-git/
+
+git remote:to view and create remotes
+git remote -v: view more details
+git remote add: To add a repository in Github (created before) as a remote
+git push: send changes to a remote
+git pull: get changes from github.
+
+collaboration conflicts.
+git fetch origin   then git merge master origin/master
+git pull origin master = git fetch + git merge
+
+Make a  pull request:
+git branch different-oil
+git add 
+git commit 
+git push origin different-oil
